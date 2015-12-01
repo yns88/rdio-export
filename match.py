@@ -194,7 +194,7 @@ def search_queries(track):
                       replace_non_alphanumeric(track.album))))
 
 
-def match_tracks(rdio_tracks, play_music, num_tracks=None):
+def match_tracks(rdio_tracks, play_music, num_tracks='?'):
     """
     :type rdio_tracks List[rdio.RdioTrack]
     :type num_tracks int
@@ -225,10 +225,9 @@ def match_tracks(rdio_tracks, play_music, num_tracks=None):
         else:
             unmatched_missing += 1
         count += 1
-        if num_tracks:
+        if num_tracks != '?':
             percentage = int(100 * count / float(num_tracks))
         else:
-            num_tracks = '?'
             percentage = '?'
         sys.stdout.write(' % 6d/%r scanned % 2r%%. %d matched, %d unmatched, %d unmatched but unavailable on Rdio\r' % (
             count, num_tracks, percentage, matched, unmatched, unmatched_missing))
